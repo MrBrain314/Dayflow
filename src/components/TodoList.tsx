@@ -204,9 +204,9 @@ export default function TodoList() {
             <option value="low">Basse</option>
           </select>
           <button type="submit"
-            className="w-10 h-10 rounded-xl flex items-center justify-center text-white transition-all hover:opacity-90"
+            className="w-12 h-12 rounded-xl flex items-center justify-center text-white transition-all hover:opacity-90 shrink-0"
             style={{ background: 'var(--green)' }}>
-            <Plus size={18} />
+            <Plus size={22} />
           </button>
         </form>
       </div>
