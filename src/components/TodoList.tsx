@@ -38,7 +38,7 @@ type FilterType = 'all' | 'high' | 'medium' | 'low' | 'done'
 
 const P_COLOR: Record<string, string> = { high: 'var(--error)', medium: 'var(--warning)', low: 'var(--success)' }
 const P_SOFT:  Record<string, string> = { high: 'var(--error-soft)', medium: 'var(--warning-soft)', low: 'var(--success-soft)' }
-const P_LABEL: Record<string, string> = { high: 'Urgente', medium: 'Moyenne', low: 'Basse' }
+const P_LABEL: Record<string, string> = { high: 'Haute', medium: 'Moyenne', low: 'Basse' }
 
 const EMPTY: Record<FilterType, { title: string; sub: string }> = {
   all:    { title: 'Aucune tâche en cours',       sub: 'Ajoute une nouvelle tâche ci-dessus.' },
@@ -189,25 +189,29 @@ export default function TodoList() {
       {/* Add form */}
       <div className="rounded-2xl p-4 mb-6"
         style={{ background: 'var(--surface)', border: '1px solid var(--border)', boxShadow: 'var(--shadow-sm)' }}>
-        <form onSubmit={addTodo} className="flex gap-2">
+        <form onSubmit={addTodo} className="flex flex-col gap-2">
+          {/* Ligne 1 : input */}
           <input value={input} onChange={e => setInput(e.target.value)}
             placeholder="Titre de la tâche..."
-            className="flex-1 rounded-xl px-4 py-2.5 text-sm focus:outline-none transition-all"
+            className="w-full rounded-xl px-4 py-2.5 text-sm focus:outline-none transition-all"
             style={{ background: 'var(--bg)', border: '1px solid var(--border)', color: 'var(--text)' }}
             onFocus={e => e.currentTarget.style.borderColor = 'var(--primary)'}
             onBlur={e => e.currentTarget.style.borderColor = 'var(--border)'} />
-          <select value={priority} onChange={e => setPriority(e.target.value as Priority)}
-            className="rounded-xl px-3 py-2.5 text-sm focus:outline-none cursor-pointer"
-            style={{ background: 'var(--bg)', border: '1px solid var(--border)', color: 'var(--text-soft)' }}>
-            <option value="high">Urgente</option>
-            <option value="medium">Moyenne</option>
-            <option value="low">Basse</option>
-          </select>
-          <button type="submit"
-            className="w-12 h-12 rounded-xl flex items-center justify-center text-white transition-all hover:opacity-90 shrink-0"
-            style={{ background: 'var(--green)' }}>
-            <Plus size={22} />
-          </button>
+          {/* Ligne 2 : select + bouton */}
+          <div className="flex gap-2">
+            <select value={priority} onChange={e => setPriority(e.target.value as Priority)}
+              className="flex-1 rounded-xl px-3 py-2.5 text-sm focus:outline-none cursor-pointer"
+              style={{ background: 'var(--bg)', border: '1px solid var(--border)', color: 'var(--text-soft)' }}>
+              <option value="high">🔴 Haute</option>
+              <option value="medium">🟡 Moyenne</option>
+              <option value="low">🟢 Basse</option>
+            </select>
+            <button type="submit"
+              className="flex-1 rounded-xl flex items-center justify-center gap-2 text-white font-semibold transition-all hover:opacity-90"
+              style={{ background: 'var(--green)', minHeight: '42px' }}>
+              <Plus size={18} /> Ajouter
+            </button>
+          </div>
         </form>
       </div>
 
@@ -217,7 +221,7 @@ export default function TodoList() {
           <div className="flex flex-wrap gap-2">
             {([
               { key: 'all',    label: `Tous(${counts.all})` },
-              { key: 'high',   label: `Urgente(${counts.high})` },
+              { key: 'high',   label: `Haute(${counts.high})` },
               { key: 'medium', label: `Moyenne(${counts.medium})` },
               { key: 'low',    label: `Basse(${counts.low})` },
               { key: 'done',   label: `Terminées(${counts.done})` },
