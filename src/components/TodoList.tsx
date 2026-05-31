@@ -276,9 +276,10 @@ export default function TodoList() {
               <div key={t.id}
                 className="rounded-2xl p-4 animate-slide-in transition-all"
                 style={{
-                  background: t.done ? 'var(--surface-dark)' : 'var(--surface-card)',
-                  border: selected.has(t.id) ? '2px solid var(--primary)' : '1px solid transparent',
+                  background: t.done ? 'var(--surface)' : 'var(--surface-card)',
+                  border: selected.has(t.id) ? '2px solid var(--primary)' : t.done ? '1px solid var(--border)' : '1px solid transparent',
                   boxShadow: 'var(--shadow-sm)',
+                  opacity: t.done ? 0.7 : 1,
                 }}>
                 <div className="flex items-start justify-between gap-2 mb-3">
                   <div className="flex items-center gap-2">
@@ -310,12 +311,12 @@ export default function TodoList() {
                 </div>
                 <p className="text-sm font-semibold leading-snug"
                   style={{
-                    color: t.done ? 'rgba(255,255,255,0.7)' : 'var(--text)',
+                    color: t.done ? 'var(--text-soft)' : 'var(--text)',
                     textDecoration: t.done ? 'line-through' : 'none',
                   }}>
                   {t.title}
                 </p>
-                <p className="text-xs mt-2" style={{ color: t.done ? 'rgba(255,255,255,0.4)' : 'var(--text-soft)' }}>
+                <p className="text-xs mt-2" style={{ color: 'var(--text-muted)' }}>
                   {new Date().toLocaleDateString('fr-FR', { day: '2-digit', month: 'short', year: 'numeric' })}
                 </p>
               </div>

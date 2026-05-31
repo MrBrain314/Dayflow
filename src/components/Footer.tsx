@@ -96,7 +96,7 @@ const Footer = () => {
             <p className="text-sm" style={{ color: 'var(--text-soft)' }}>
               Découvre Dayflow en vidéo avant de te lancer. Une démonstration complète de toutes les fonctionnalités.
             </p>
-            <a href="https://drive.google.com/file/d/1SgnKmcKrYlTubNnzXS6P2dLP_Q9w0cRZ/view?usp=drive_link"
+            <a href="https://drive.google.com/file/d/1Ai7_s7FvM_qy0Pr4COhcLAIJNXk1Dzyf/view?usp=drive_link"
               target="_blank" rel="noopener noreferrer"
               className="flex items-center gap-2 text-sm font-medium hover:underline w-fit mt-1"
               style={{ color: 'var(--primary)' }}>
